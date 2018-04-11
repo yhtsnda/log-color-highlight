@@ -345,20 +345,20 @@ function printHelp (writer) {
     log(writer, bold("  Highlight pattern:")+" [pattern1 pattern2 ...] [-color pattern1 pattern2 ...] ....");
     log(writer, "\tpattern\tRegex pattern. If no color is specified, by default it is highlighted in Red.");
     log(writer, "\tcolor\tHighlighting color, style, preset or modifier. Allowed values:");
-    writer.write(gray("\t\tColors:"));
+    writer.write(bold("\t\tColors:"));
     for(var color in validColors){
         writer.write(" "+color);
     }
-    writer.write(gray("\n\t\tBackground colors:"));
+    writer.write(bold("\n\t\tBackground colors:"));
     for(var color in validBgColors){
         writer.write(" "+color);
     }
-    writer.write(gray("\n\t\tStyles:"));
+    writer.write(bold("\n\t\tStyles:"));
     for(var color in validStyles){
         writer.write(" "+color);
     }
-    writer.write(gray("\n\t\tPresets:") + " any preset defined with '-p' parameter");
-    writer.write(gray("\n\t\tModifiers:"));
+    writer.write(bold("\n\t\tPresets:") + " any preset defined with '-p' parameter");
+    writer.write(bold("\n\t\tModifiers:"));
     writer.write("\n\t\t\tcs ci - toggle for case sensitivity");
     writer.write("\n\t\t\tesc  - escape regex special characters");
 
@@ -390,7 +390,7 @@ function bold(message){
     return ansi.bold.open+message+ansi.bold.close;
 }
 function gray(message){
-    return ansi.gray.open+message+ansi.gray.close;
+    return ansi.italic.open+message+ansi.italic.close;
 }
 function log(writer, text){
     writer.write(text+'\n');
