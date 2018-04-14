@@ -21,6 +21,7 @@ tail log.txt | lch -red .*error.* -blue info -yellow warn
 -h --help       Prints this help message.
 ```
 
+<a name="highlighting"></a>
 **Highlighting**
 
 Has the general form of ```-style regex1 [regex2 ...]```
@@ -33,7 +34,7 @@ echo Information, warnings, errors | lch -yellow.bold warn error failure -blue i
 
 > <span style="color:blue">Info</span>rmation, <span style="color:orange">warn</span>ings, <span style="color:orange">error</span>s
 
-If no style is specified it defaults to ```red.bold```. This behavior may be altered using the implicit style option which is mostly useful if specified in some [config file](#config-file).
+If no style is specified it defaults to ```red.bold```. This behavior may be altered using the ```-s style``` which is mostly useful if specified in [configuration files](#config-file).
 
 ```
 echo Some errors | lch error
@@ -51,9 +52,9 @@ Styling: ```reset, bold, dim, italic, underline, inverse, hidden, strikethrough`
 
 **Modifiers**
 
-```cs``` - by default all matches are case insensitive; this modifier forces matches to be case sensitive - ```lch -blue.cs .*INFO.*```
+```cs``` By default all matches are case insensitive; this modifier forces matches to be case sensitive - ```lch -blue.cs .*INFO.*```
 
-```esc```  - escape regex special characters
+```esc```  Escape regex special characters
 
 ```
 echo [error] ... [info] | lch -red.esc [error] -cyan "\[info\]"
@@ -72,12 +73,15 @@ echo "[error] ... [info]" | lch -p err=red.bold -p inf=yellow.bold -err error -i
 <a name="config-file"></a>
 **Configuration file**
 
-Supports the same highlighting syntax. In addition allows multiple lines and comments.
+Supports the same [highlighting syntax](#highlighting). In addition allows multiple lines and comments.
 
 ```
 # Presets
 -p failure=red.bold
 -p success=green.bold
+
+# Warnings
+-yellow.bold warn warning warnings deprecated
 
 # Success
 -success success successful successfully
@@ -88,9 +92,6 @@ Supports the same highlighting syntax. In addition allows multiple lines and com
 -failure err error errors erroneous
 -failure wrong
 -failure fail failure
-
-# Warnings
--yellow.bold warn warning warnings deprecated
 ```
 
 ```
