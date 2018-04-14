@@ -4,7 +4,7 @@ log-color-highlight v1.3.0
 
 ```lch [options] -style pattern [-style pattern ...]```
 
-Highlights input file indicated with ```-f``` or standard input if not specified.
+Highlights input file indicated with ```-f``` or standard input if no file is specified.
 
 ```
 lch -f log.txt -red .*error.* -blue info -yellow warn
@@ -25,7 +25,7 @@ tail log.txt | lch -red .*error.* -blue info -yellow warn
 
 Has the general form of ```-style regex1 [regex2 ...]```
 
-Styles, modifiers and presets may be combined using dot notation
+Multiple styles may be combined using dot notation
 
 ```
 echo Information, warnings, errors | lch -yellow.bold warn error failure -blue info
@@ -33,7 +33,7 @@ echo Information, warnings, errors | lch -yellow.bold warn error failure -blue i
 
 > <span style="color:blue">Info</span>rmation, <span style="color:orange">warn</span>ings, <span style="color:orange">error</span>s
 
-If no style is specified it defaults to ```red.bold```. This behavior may be altered using the implicit style option which is mostly useful if specified in config file.
+If no style is specified it defaults to ```red.bold```. This behavior may be altered using the implicit style option which is mostly useful if specified in some [config file](#config-file).
 
 ```
 echo Some errors | lch error
@@ -69,6 +69,7 @@ Define common style options. Useful together with configuration files.
 echo "[error] ... [info]" | lch -p err=red.bold -p inf=yellow.bold -err error -inf info
 ```
 
+<a name="config-file"></a>
 **Configuration file**
 
 Supports the same highlighting syntax. In addition allows multiple lines and comments.
