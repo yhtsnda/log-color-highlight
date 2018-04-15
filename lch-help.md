@@ -53,7 +53,7 @@ Styling: ```reset, bold, dim, italic, underline, inverse, hidden, strikethrough`
 **Modifiers**
 
 ```cs``` By default all matches are case insensitive; this modifier forces matches to be case sensitive - ```lch -blue.cs .*INFO.*```
-
+```wl``` Highlights the whole line
 ```esc```  Escape regex special characters
 
 ```

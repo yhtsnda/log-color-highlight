@@ -280,6 +280,14 @@ var tests = [
                  shouldFail: false,
                  res: false
              },
+             {
+                 name: 'test4_case6', // whole line
+                 TODO
+                 args: "-f "+INPUT4_PATH+" -green.esc 'receive \\(ctrl\\) -'",
+                 expected: "On receive (Ctrl) - monitorId: 3e5e8426-5891-4256-8bda-b03bf6f14d67",
+                 shouldFail: false,
+                 res: false
+             },
 
              // TEST SET 5 - Default highlight
              {
