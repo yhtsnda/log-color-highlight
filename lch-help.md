@@ -4,20 +4,13 @@ log-color-highlight v1.3.0
 
 ```lch [options] -style pattern [-style pattern ...]```
 
-Highlights input file indicated with ```-f``` or standard input if no file is specified.
-
-```
-lch -f log.txt -red .*error.* -blue info -yellow warn
-tail log.txt | lch -red .*error.* -blue info -yellow warn
-```
-
 **Options**
 ```
 -f filePath     Input file path. If this is not provided, standard input is used.
 -c configPath   Path to configuration file.
 -s style        Implicit style.
 -cs             Case sensitive. By default text matching is done case insensitive.
--p              Add color or style preset.
+-p              Add style/modifier preset.
 -h --help       Prints this help message.
 ```
 
@@ -34,7 +27,7 @@ echo Information, warnings, errors | lch -yellow.bold warn error failure -blue i
 
 > <span style="color:blue">Info</span>rmation, <span style="color:orange">warn</span>ings, <span style="color:orange">error</span>s
 
-If no style is specified it defaults to ```red.bold```. This behavior may be altered using the ```-s style``` which is mostly useful if specified in [configuration files](#config-file).
+If no style is specified it defaults to ```red```. This behavior may be altered using the ```-s style``` which is mostly useful if specified in [configuration files](#config-file).
 
 ```
 echo Some errors | lch error
@@ -53,18 +46,20 @@ Styling: ```reset, bold, dim, italic, underline, inverse, hidden, strikethrough`
 **Modifiers**
 
 * ```cs``` Forces matches to be case sensitive. By default all matches are case insensitive.
-* ```lch -blue.cs .*INFO.*```
+  ```
+  lch -blue.cs .*INFO.*
+  ```
 
 * ```wl``` Highlights the whole line
   ```
-  echo highlight whole line | node lch.js -blue.wl whole -yellow light
+  echo highlight whole line | node lch.js -green.wl whole -yellow light
   ```
-  > <span style="color:blue">high</span><span style="color:orange">light</span><span style="color:blue"> whole line</span>
+  > <span style="color:green">high</span><span style="color:orange">light</span><span style="color:green"> whole line</span>
 * ```esc```  Escape regex special characters
   ```
-  echo [error] ... [info] | lch -red.esc [error] -cyan "\[info\]"
+  echo [error] ... [info] | lch -red.esc [error] -yellow "\[info\]"
   ```
-  > <span style="color:red">[error]</span> ... <span style="color:blue">[info]</span>
+  > <span style="color:red">[error]</span> ... <span style="color:orange">[info]</span>
 
 
 **Presets**
