@@ -52,14 +52,19 @@ Styling: ```reset, bold, dim, italic, underline, inverse, hidden, strikethrough`
 
 **Modifiers**
 
-```cs``` By default all matches are case insensitive; this modifier forces matches to be case sensitive - ```lch -blue.cs .*INFO.*```
-```wl``` Highlights the whole line
-```esc```  Escape regex special characters
+* ```cs``` Forces matches to be case sensitive. By default all matches are case insensitive.
+* ```lch -blue.cs .*INFO.*```
 
-```
-echo [error] ... [info] | lch -red.esc [error] -cyan "\[info\]"
-```
-> <span style="color:red">[error]</span> ... <span style="color:blue">[info]</span>
+* ```wl``` Highlights the whole line
+  ```
+  echo highlight whole line | node lch.js -blue.wl whole -yellow light
+  ```
+  > <span style="color:blue">high</span><span style="color:orange">light</span><span style="color:blue"> whole line</span>
+* ```esc```  Escape regex special characters
+  ```
+  echo [error] ... [info] | lch -red.esc [error] -cyan "\[info\]"
+  ```
+  > <span style="color:red">[error]</span> ... <span style="color:blue">[info]</span>
 
 
 **Presets**
