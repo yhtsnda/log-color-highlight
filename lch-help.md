@@ -19,13 +19,13 @@ log-color-highlight v1.3.0
 
 Has the general form of ```-style regex1 [regex2 ...]```
 
-Multiple styles may be combined using dot notation
+Multiple styles may be combined using dot notation.
 
 ```
 echo Information, warnings, errors | lch -yellow.bold warn error failure -blue info
 ```
 
-If no style is specified it defaults to ```red```. This behavior may be altered using the ```-s style``` which is mostly useful if specified in [configuration files](#config-file).
+If no style is specified it defaults to ```red```. This behavior may be altered with ```-s``` option which is mostly useful if specified in [configuration files](#config-file).
 
 ```
 echo Some errors | lch error
@@ -43,24 +43,20 @@ Styling: ```reset, bold, dim, italic, underline, inverse, hidden, strikethrough`
 
 * ```cs``` Forces matches to be case sensitive. By default all matches are case insensitive.
   ```
-  lch -blue.cs .*INFO.*
+  echo Info, Warn | lch -blue.cs info -yellow warn
   ```
-
 * ```wl``` Highlights the whole line
   ```
   echo highlight whole line | node lch.js -green.wl whole -yellow light
   ```
-  > <span style="color:green">high</span><span style="color:orange">light</span><span style="color:green"> whole line</span>
 * ```esc```  Escape regex special characters
   ```
   echo [error] ... [info] | lch -red.esc [error] -yellow "\[info\]"
   ```
-  > <span style="color:red">[error]</span> ... <span style="color:orange">[info]</span>
-
 
 **Presets**
 
-Define common style options. Useful together with configuration files.
+Define common style. Useful together with configuration files.
 
 ```
 echo "[error] ... [info]" | lch -p err=red.bold -p inf=yellow.bold -err error -inf info
@@ -93,4 +89,3 @@ Supports the same [highlighting syntax](#highlighting). In addition allows multi
 ```
 echo Successful, warnings, errors | lch -c lch.conf
 ```
-> <span style="color:green">Successful</span>, <span style="color:orange">warnings</span>, <span style="color:red">errors</span>

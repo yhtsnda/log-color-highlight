@@ -330,8 +330,9 @@ function addHighlightPattern(highlightOptions, highlightColor, modifiers, highli
 
 function printHelp (writer) {
     log(writer, "  log-color-highlight v"+pjson.version);
-
+    log(writer, "");
     log(writer, "  "+bold("Usage:"));
+    log(writer, "");
     log(writer, "  "+code("lch [options] -style pattern [-style pattern ...]"));
     log(writer, "");
     log(writer, "  "+bold("Options:"));
@@ -346,71 +347,48 @@ function printHelp (writer) {
     log(writer, "");
     log(writer, "  "+bold("Highlighting"));
     log(writer, "  Has the general form of "+"'-style regex1 [regex2 ...]'");
-    log(writer, "  Multiple styles may be combined using dot notation");
-    log(writer, "  "+code("echo Information, warnings, errors | lch -yellow.bold warn error failure -blue info"));
+    log(writer, "  Multiple styles may be combined using dot notation.");
+    log(writer, "  "+code("echo Info, warnings, errors | lch -yellow.bold warn error failure -blue info"));
     log(writer, "");
-    log(writer, "  If no style is specified it defaults to "+red("red")+". This behavior may be altered");
-    log(writer, "  using the -s style which is mostly useful if specified in configuration files");
+    log(writer, "  If no style is specified it defaults to red. This behavior may be altered");
+    log(writer, "  with -s option which is mostly useful if specified in configuration files.");
     log(writer, "  "+code("echo Some errors | lch error"));
     log(writer, "");
     log(writer, "  "+bold("Styles:"));
-    writer.write(("  Colors:"));
+    writer.write(("  Colors      "));
     for(var color in validColors){
         writer.write(" "+color);
     }
     log(writer, "");
-    writer.write(("  Background colors:"));
+    writer.write(("  Background  "));
     var i = 0
     for(var color in validBgColors){
         writer.write(" "+color);
         if(i===4){
           log(writer, "");
-          writer.write("                    ");
+          writer.write("              ");
         }
         i++
     }
     log(writer, "");
-    writer.write(("  Styling:"));
+    writer.write(("  Styling     "));
     for(var color in validStyles){
         writer.write(" "+color);
     }
     log(writer, "");
     log(writer, "");
     log(writer, "  "+bold("Modifiers"));
-    log(writer, "  * cs -"+" Forces matches to be case sensitive. By default all matches are case insensitive.");
-    log(writer, "    "+code("lch -blue.cs .*INFO.*"));
-    log(writer, "  * wl -"+" Highlights the whole line");
-    log(writer, "    "+code("echo highlight whole line | node lch.js -green.wl whole -yellow light"));
-    log(writer, "    > "+green("high")+yellow("light")+green(" whole line"));
-    log(writer, "  * esc -"+" Escape regex special characters");
-    log(writer, "    "+code('echo [error] ... [info] | lch -red.esc [error] -yellow "\\[info\\]"'));
-    log(writer, "    > "+red("[error]")+" ... "+yellow("[info]"));
+    log(writer, "  cs -"+" Forces matches to be case sensitive");
+    log(writer, "  "+code("echo Info, Warn | lch -blue.cs info -yellow warn"));
+    log(writer, "  wl -"+" Highlights the whole line");
+    log(writer, "  "+code("echo highlight whole line | node lch.js -green.wl whole -yellow light"));
+    log(writer, "  esc -"+" Escape regex special characters");
+    log(writer, "  "+code('echo [error] ... [info] | lch -red.esc [error] -yellow "\\[info\\]"'));
     log(writer, "");
     log(writer, "  "+bold("Presets"));
-    log(writer, "  Define common style options. Useful together with configuration files.");
+    log(writer, "  Define common styles. Useful together with configuration files.");
     log(writer, "  "+code('echo "[error] ... [info]" | lch -p err=red.bold -p inf=yellow.bold -err error -inf info'));
     log(writer, "");
-    log(writer, "  "+bold("Configuration file"));
-    log(writer, "  Supports the same highlighting syntax. In addition allows multiple lines and comments.");
-    log(writer, "  "+code("# Presets"));
-    log(writer, "  "+code("-p failure=red.bold"));
-    log(writer, "  "+code("-p success=green.bold"));
-    log(writer, "");
-    log(writer, "  "+code("# Warnings"));
-    log(writer, "  "+code("-yellow.bold warn warning warnings deprecated"));
-    log(writer, "");
-    log(writer, "  "+code("# Success"));
-    log(writer, "  "+code("-success success successful successfully"));
-    log(writer, "  "+code('-success "Operation.*completed"'));
-    log(writer, "");
-    log(writer, "  "+code("# Errors"));
-    log(writer, "  "+code('-failure "Operation.*failed"'));
-    log(writer, "  "+code("-failure err error errors erroneous"));
-    log(writer, "  "+code("-failure wrong"));
-    log(writer, "  "+code("-failure fail failure"));
-    log(writer, "");
-    log(writer, "  "+code("echo Successful, warnings, errors | lch -c lch.conf"));
-    log(writer, "  > "+green("Successful")+", "+yellow("warnings")+", "+red("errors"));
 }
 
 function error(message){
@@ -431,11 +409,8 @@ function red(message){
 function green(message){
     return ansi.green.open+message+ansi.green.close;
 }
-// function code(message){
-//     return ansi.bgWhite.open+ansi.black.open+message+ansi.black.close+ansi.bgWhite.close;
-// }
 function code(message){
-    return "> "+message;
+    return "  "+message;
 }
 function log(writer, text){
     writer.write(text+'\n');
