@@ -335,22 +335,23 @@ function printHelp (writer) {
     log(writer, "  "+code("lch [options] -style pattern [-style pattern ...]"));
     log(writer, "");
     log(writer, "  "+bold("Options:"));
-    log(writer, "  -f filePath\tInput file path. If this is not provided, standard input is used.");
-    log(writer, "  -c configPath\tPath to configuration file.");
-    log(writer, "  -s style\tImplicit style.");
-    log(writer, "  -cs\t\tCase sensitive. By default text matching is done case insensitive.");
-    log(writer, "  -p\t\tAdd style/modifier preset");
-    log(writer, "  -h --help\tPrints this help message.");
+    log(writer, "  -f filePath   Input file path");
+    log(writer, "                If this is not provided standard input is used");
+    log(writer, "  -c configPath Path to configuration file");
+    log(writer, "  -s style      Implicit style");
+    log(writer, "  -cs           Case sensitive");
+    log(writer, "                By default text matching is done case insensitive");
+    log(writer, "  -p            Add style/modifier preset");
+    log(writer, "  -h --help     Prints this help message");
     log(writer, "");
     log(writer, "  "+bold("Highlighting"));
     log(writer, "  Has the general form of "+"'-style regex1 [regex2 ...]'");
     log(writer, "  Multiple styles may be combined using dot notation");
     log(writer, "  "+code("echo Information, warnings, errors | lch -yellow.bold warn error failure -blue info"));
-    log(writer, "  > "+blue("Info")+"rmation, "+yellow("warn")+"ings, "+yellow("error")+"s");
     log(writer, "");
-    log(writer, "  If no style is specified it defaults to "+red("red")+". This behavior may be altered using the -s style which is mostly useful if specified in configuration files");
+    log(writer, "  If no style is specified it defaults to "+red("red")+". This behavior may be altered");
+    log(writer, "  using the -s style which is mostly useful if specified in configuration files");
     log(writer, "  "+code("echo Some errors | lch error"));
-    log(writer, "  > "+"Some "+red("error")+"s");
     log(writer, "");
     log(writer, "  "+bold("Styles:"));
     writer.write(("  Colors:"));
@@ -359,8 +360,14 @@ function printHelp (writer) {
     }
     log(writer, "");
     writer.write(("  Background colors:"));
+    var i = 0
     for(var color in validBgColors){
         writer.write(" "+color);
+        if(i===4){
+          log(writer, "");
+          writer.write("                    ");
+        }
+        i++
     }
     log(writer, "");
     writer.write(("  Styling:"));

@@ -6,7 +6,7 @@ log-color-highlight v1.3.0
 
 **Options**
 ```
--f filePath     Input file path. If this is not provided, standard input is used.
+-f filePath     Input file path. If this is not provided standard input is used
 -c configPath   Path to configuration file.
 -s style        Implicit style.
 -cs             Case sensitive. By default text matching is done case insensitive.
@@ -25,15 +25,11 @@ Multiple styles may be combined using dot notation
 echo Information, warnings, errors | lch -yellow.bold warn error failure -blue info
 ```
 
-> <span style="color:blue">Info</span>rmation, <span style="color:orange">warn</span>ings, <span style="color:orange">error</span>s
-
 If no style is specified it defaults to ```red```. This behavior may be altered using the ```-s style``` which is mostly useful if specified in [configuration files](#config-file).
 
 ```
 echo Some errors | lch error
 ```
-
-> Some <span style="color:red">error</span>s
 
 **Styles**
 
