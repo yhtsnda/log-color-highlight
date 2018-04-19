@@ -346,7 +346,6 @@ function printHelp (writer) {
     log(writer, "  -h --help     Prints this help message");
     log(writer, "");
     log(writer, "  "+bold("Highlighting"));
-    log(writer, "  Has the general form of "+"'-style regex1 [regex2 ...]'");
     log(writer, "  Multiple styles may be combined using dot notation.");
     log(writer, "  "+code("echo Info, warnings, errors | lch -yellow.bold warn error failure -blue info"));
     log(writer, "");
@@ -361,14 +360,8 @@ function printHelp (writer) {
     }
     log(writer, "");
     writer.write(("  Background  "));
-    var i = 0
     for(var color in validBgColors){
         writer.write(" "+color);
-        if(i===4){
-          log(writer, "");
-          writer.write("              ");
-        }
-        i++
     }
     log(writer, "");
     writer.write(("  Styling     "));
@@ -382,7 +375,7 @@ function printHelp (writer) {
     log(writer, "  "+code("echo Info, Warn | lch -blue.cs info -yellow warn"));
     log(writer, "  wl -"+" Highlights the whole line");
     log(writer, "  "+code("echo highlight whole line | node lch.js -green.wl whole -yellow light"));
-    log(writer, "  esc -"+" Escape regex special characters");
+    log(writer, "  esc -"+" Escapes regex special characters");
     log(writer, "  "+code('echo [error] ... [info] | lch -red.esc [error] -yellow "\\[info\\]"'));
     log(writer, "");
     log(writer, "  "+bold("Presets"));

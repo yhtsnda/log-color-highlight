@@ -2,7 +2,7 @@ log-color-highlight v1.3.0
 
 **Usage**
 
-```lch [options] -style pattern [-style pattern ...]```
+```lch [options] -style regex [-style regex ...]```
 
 **Options**
 ```
@@ -16,8 +16,6 @@ log-color-highlight v1.3.0
 
 <a name="highlighting"></a>
 **Highlighting**
-
-Has the general form of ```-style regex1 [regex2 ...]```
 
 Multiple styles may be combined using dot notation.
 
@@ -49,7 +47,7 @@ Styling: ```reset, bold, dim, italic, underline, inverse, hidden, strikethrough`
   ```
   echo highlight whole line | node lch.js -green.wl whole -yellow light
   ```
-* ```esc```  Escape regex special characters
+* ```esc```  Escapes regex special characters
   ```
   echo [error] ... [info] | lch -red.esc [error] -yellow "\[info\]"
   ```
