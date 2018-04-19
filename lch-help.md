@@ -20,7 +20,7 @@ log-color-highlight v1.3.0
 Multiple styles may be combined using dot notation.
 
 ```
-echo Information, warnings, errors | lch -yellow.bold warn error failure -blue info
+echo Information, warnings, errors | lch -yellow.bold warn error failure -green info
 ```
 
 If no style is specified it defaults to ```red```. This behavior may be altered with ```-s``` option which is mostly useful if specified in [configuration files](#config-file).
@@ -41,7 +41,7 @@ Styling: ```reset, bold, dim, italic, underline, inverse, hidden, strikethrough`
 
 * ```cs``` Forces matches to be case sensitive. By default all matches are case insensitive.
   ```
-  echo Info, Warn | lch -blue.cs info -yellow warn
+  echo Info, Warn | lch -green.cs info -yellow warn
   ```
 * ```wl``` Highlights the whole line
   ```

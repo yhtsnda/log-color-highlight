@@ -329,13 +329,13 @@ function addHighlightPattern(highlightOptions, highlightColor, modifiers, highli
 }
 
 function printHelp (writer) {
-    log(writer, "  log-color-highlight v"+pjson.version);
+    log(writer, "log-color-highlight v"+pjson.version);
     log(writer, "");
-    log(writer, "  "+bold("Usage:"));
+    log(writer, ""+bold("Usage:"));
     log(writer, "");
-    log(writer, "  "+code("lch [options] -style pattern [-style pattern ...]"));
+    log(writer, code("lch [options] -style pattern [-style pattern ...]"));
     log(writer, "");
-    log(writer, "  "+bold("Options:"));
+    log(writer, ""+bold("Options:"));
     log(writer, "  -f filePath   Input file path");
     log(writer, "                If this is not provided standard input is used");
     log(writer, "  -c configPath Path to configuration file");
@@ -345,43 +345,50 @@ function printHelp (writer) {
     log(writer, "  -p            Add style/modifier preset");
     log(writer, "  -h --help     Prints this help message");
     log(writer, "");
-    log(writer, "  "+bold("Highlighting"));
-    log(writer, "  Multiple styles may be combined using dot notation.");
-    log(writer, "  "+code("echo Info, warnings, errors | lch -yellow.bold warn error failure -blue info"));
+    log(writer, ""+bold("Highlighting"));
+    log(writer, "Multiple styles may be combined using dot notation.");
     log(writer, "");
-    log(writer, "  If no style is specified it defaults to red. This behavior may be altered");
-    log(writer, "  with -s option which is mostly useful if specified in configuration files.");
-    log(writer, "  "+code("echo Some errors | lch error"));
+    log(writer, code("echo Info, warnings, errors | lch -yellow.bold warn error failure -green info"));
     log(writer, "");
-    log(writer, "  "+bold("Styles:"));
-    writer.write(("  Colors      "));
+    log(writer, "If no style is specified it defaults to red. This behavior may be altered");
+    log(writer, "with -s option which is mostly useful if specified in configuration files.");
+    log(writer, "");
+    log(writer, code("echo Some errors | lch error"));
+    log(writer, "");
+    log(writer, ""+bold("Styles:"));
+    writer.write(("Colors      "));
     for(var color in validColors){
         writer.write(" "+color);
     }
     log(writer, "");
-    writer.write(("  Background  "));
+    writer.write(("Background  "));
     for(var color in validBgColors){
         writer.write(" "+color);
     }
     log(writer, "");
-    writer.write(("  Styling     "));
+    writer.write(("Styling     "));
     for(var color in validStyles){
         writer.write(" "+color);
     }
     log(writer, "");
     log(writer, "");
-    log(writer, "  "+bold("Modifiers"));
-    log(writer, "  cs -"+" Forces matches to be case sensitive");
-    log(writer, "  "+code("echo Info, Warn | lch -blue.cs info -yellow warn"));
-    log(writer, "  wl -"+" Highlights the whole line");
-    log(writer, "  "+code("echo highlight whole line | node lch.js -green.wl whole -yellow light"));
-    log(writer, "  esc -"+" Escapes regex special characters");
-    log(writer, "  "+code('echo [error] ... [info] | lch -red.esc [error] -yellow "\\[info\\]"'));
+    log(writer, ""+bold("Modifiers"));
+    log(writer, "cs -"+" Forces matches to be case sensitive");
     log(writer, "");
-    log(writer, "  "+bold("Presets"));
-    log(writer, "  Define common styles. Useful together with configuration files.");
-    log(writer, "  "+code('echo "[error] ... [info]" | lch -p err=red.bold -p inf=yellow.bold -err error -inf info'));
+    log(writer, code("echo Info, Warn | lch -green.cs info -yellow warn"));
     log(writer, "");
+    log(writer, "wl -"+" Highlights the whole line");
+    log(writer, "");
+    log(writer, code("echo highlight whole line | node lch.js -green.wl whole -yellow light"));
+    log(writer, "");
+    log(writer, "esc -"+" Escapes regex special characters");
+    log(writer, "");
+    log(writer, code('echo [error] ... [info] | lch -red.esc [error] -yellow "\\[info\\]"'));
+    log(writer, "");
+    log(writer, ""+bold("Presets"));
+    log(writer, "Define common styles. Useful together with configuration files.");
+    log(writer, "");
+    log(writer, code('echo "[error] ... [info]" | lch -p err=red.bold -p inf=yellow.bold -err error -inf info'));
 }
 
 function error(message){
