@@ -333,7 +333,7 @@ function printHelp (writer) {
     log(writer, "");
     log(writer, ""+bold("Usage:"));
     log(writer, "");
-    log(writer, code("lch [options] -style pattern [-style pattern ...]"));
+    log(writer, code("lch [options] -style1 regex1 [-style2 regex2] ..."));
     log(writer, "");
     log(writer, ""+bold("Options:"));
     log(writer, "  -f filePath   Input file path");
@@ -348,7 +348,7 @@ function printHelp (writer) {
     log(writer, ""+bold("Highlighting"));
     log(writer, "Multiple styles may be combined using dot notation.");
     log(writer, "");
-    log(writer, code("echo Info, warnings, errors | lch -yellow.bold warn error failure -green info"));
+    log(writer, code("echo Info, warnings, errors | lch -green info -yellow.bold warn error failure"));
     log(writer, "");
     log(writer, "If no style is specified it defaults to red. This behavior may be altered");
     log(writer, "with -s option which is mostly useful if specified in configuration files.");
